@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemons } from "./store/slices/pokemon";
-import { RootState } from "./store";
+import { AppDispatch, RootState } from "./store";
+import { getPokemons } from "./store/slices/pokemon/thunks";
 
 export const PokemonApp = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const {
     isLoading,
     pokemons = [],
@@ -12,7 +12,7 @@ export const PokemonApp = () => {
   } = useSelector((state: RootState) => state.pokemons);
 
   useEffect(() => {
-    dispatch(getPokemons());
+    dispatch(getPokemons({ page: 1 }));
   }, []);
 
   return (
@@ -23,7 +23,10 @@ export const PokemonApp = () => {
           <li key={name}>{name}</li>
         ))}
       </ul>
-      <button disabled={isLoading} onClick={() => dispatch(getPokemons(page))}>
+      <button
+        disabled={isLoading}
+        onClick={() => dispatch(getPokemons({ page: page + 1 }))}
+      >
         Next
       </button>
     </>
