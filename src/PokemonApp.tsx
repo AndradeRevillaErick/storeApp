@@ -1,15 +1,15 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "./store";
+import { RootState } from "./store";
 import { getPokemons } from "./store/slices/pokemon/thunks";
+import { useAppDispatch, useAppSelector } from "./hooks/hooks";
 
 export const PokemonApp = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const {
     isLoading,
     pokemons = [],
     page,
-  } = useSelector((state: RootState) => state.pokemons);
+  } = useAppSelector((state: RootState) => state.pokemons);
 
   useEffect(() => {
     dispatch(getPokemons({ page: 1 }));
