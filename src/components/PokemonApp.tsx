@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { RootState } from "./store";
-import { getPokemons } from "./store/slices/pokemon/thunks";
-import { useAppDispatch, useAppSelector } from "./hooks/hooks";
+import { RootState } from "../store";
+import { getPokemons } from "../store/slices/pokemon/thunks";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 
 export const PokemonApp = () => {
   const dispatch = useAppDispatch();
