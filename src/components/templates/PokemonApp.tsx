@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import { RootState } from "./store";
-import { getPokemons } from "./store/slices/pokemon/thunks";
-import { useAppDispatch, useAppSelector } from "./hooks/hooks";
+import { RootState } from "../../store";
+import { getPokemons } from "../../store/slices/pokemon/thunks";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { Button } from "../atoms";
 
 export const PokemonApp = () => {
   const dispatch = useAppDispatch();
@@ -23,12 +24,11 @@ export const PokemonApp = () => {
           <li key={name}>{name}</li>
         ))}
       </ul>
-      <button
+      <Button
+        children={"Next"}
         disabled={isLoading}
         onClick={() => dispatch(getPokemons({ page: page + 1 }))}
-      >
-        Next
-      </button>
+      />
     </>
   );
 };
